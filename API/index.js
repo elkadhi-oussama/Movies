@@ -10,6 +10,9 @@ import mongoose from "mongoose";
 // Import the router for handling movie-related routes
 import routerMovie from "./routes/movieRoutes.js";
 
+// Import the router for handling user-related routes
+import routerUser from "./routes/userRoutes.js";
+
 // Import and configure environment variables from a .env file
 import "dotenv/config";
 
@@ -36,6 +39,9 @@ app.get("/", (req, res) => res.send("<h1>Hello Server side</h1>"));
 
 // Use the movie router for any requests that start with "/movie"
 app.use("/movie", routerMovie);
+
+// Use the user router for any requests that start with "/user"
+app.use("/user", routerUser);
 
 // Start the Express server and listen on the specified port
 app.listen(PORT, (err) => {
