@@ -7,11 +7,20 @@ import express from "express";
 // Import the Mongoose library for interacting with MongoDB
 import mongoose from "mongoose";
 
+// Import the CORS library to handle Cross-Origin Resource Sharing
+import cors from "cors";
+
+// Import the Body-Parser library for parsing request bodies
+import bodyParser from "body-parser";
+
 // Import the router for handling movie-related routes
 import routerMovie from "./routes/movieRoutes.js";
 
 // Import the router for handling user-related routes
 import routerUser from "./routes/userRoutes.js";
+
+// Import the router for handling payment-related routes
+import routerPayment from "./routes/paymentRoutes.js";
 
 // Import and configure environment variables from a .env file
 import "dotenv/config";
@@ -21,6 +30,12 @@ const app = express();
 
 // Use Express's built-in middleware to parse incoming JSON requests
 app.use(express.json());
+
+// Enable Cross-Origin Resource Sharing (CORS) for all requests
+app.use(cors());
+
+// Use Body-Parser's URL-encoded middleware to parse URL-encoded request bodies
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Get the port number from environment variables, where the server will listen for requests
 const PORT = process.env.PORT;
@@ -42,6 +57,9 @@ app.use("/movie", routerMovie);
 
 // Use the user router for any requests that start with "/user"
 app.use("/user", routerUser);
+
+// Use the payment router for any requests that start with "/payment"
+app.use("/payment", routerPayment);
 
 // Start the Express server and listen on the specified port
 app.listen(PORT, (err) => {
