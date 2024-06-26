@@ -32,17 +32,7 @@ const app = express();
 app.use(express.json());
 
 // Enable Cross-Origin Resource Sharing (CORS) for all requests
-app.use(
-  cors({
-    origin: [
-      "https://movies-application-front.vercel.app/",
-      "http://localhost:3000",
-      "https://movies-application-api.vercel.app/",
-    ], // Specify the allowed origin
-    methods: ["POST", "GET", "DELETE", "PUT"], // Specify the allowed HTTP methods
-    credentials: true, // Allow cookies to be sent with requests
-  })
-);
+app.use(cors());
 
 // Use Body-Parser's URL-encoded middleware to parse URL-encoded request bodies
 app.use(bodyParser.urlencoded({ extended: false }));
