@@ -34,7 +34,10 @@ app.use(express.json());
 // Enable Cross-Origin Resource Sharing (CORS) for all requests
 app.use(
   cors({
-    origin: ["https://movies-application-front.vercel.app/"], // Specify the allowed origin
+    origin: [
+      "https://movies-application-front.vercel.app/",
+      "http://localhost:3000",
+    ], // Specify the allowed origin
     methods: ["POST", "GET", "DELETE", "PUT"], // Specify the allowed HTTP methods
     credentials: true, // Allow cookies to be sent with requests
   })
@@ -51,7 +54,7 @@ const DB = process.env.DB_URL;
 
 // Connect to the MongoDB database using Mongoose
 mongoose
-  .connect(DB,{ dbName: "movieApp" })
+  .connect(DB, { dbName: "movieApp" })
   .then(() => console.log("Database is connected !!!!!")) // Log a success message if the connection is successful
   .catch((err) => console.log("Database has a problem ", err)); // Log an error message if the connection fails
 
