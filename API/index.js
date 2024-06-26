@@ -51,7 +51,7 @@ const DB = process.env.DB_URL;
 
 // Connect to the MongoDB database using Mongoose
 mongoose
-  .connect(DB)
+  .connect(DB,{ dbName: "movieApp" })
   .then(() => console.log("Database is connected !!!!!")) // Log a success message if the connection is successful
   .catch((err) => console.log("Database has a problem ", err)); // Log an error message if the connection fails
 
