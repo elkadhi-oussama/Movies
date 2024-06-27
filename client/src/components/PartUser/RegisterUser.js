@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addErrors, delErrors } from "../../Redux/Slice/manipulationSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { changeEtat } from "../../Redux/Slice/changeStateSlice";
 
 const RegisterUser = () => {
+  const navigate = useNavigate();
   const [newUser, setNewUser] = useState({
     username: "",
     email: "",
@@ -28,6 +30,8 @@ const RegisterUser = () => {
         localStorage.setItem("auth", result.data.userToken);
         // Clear any previous validation errors
         dispatch(delErrors());
+        navigate("/movie");
+        dispatch(changeEtat());
         setNewUser({
           username: "",
           email: "",

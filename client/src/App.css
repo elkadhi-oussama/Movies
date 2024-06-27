@@ -40,6 +40,14 @@ body{
     margin-top: 20px;
     color: white;
 }
+.me-auto{
+    width: 30%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 5px;
+    font-size: 16px;
+}
 .me-auto a{
     text-decoration: none;
     color: black;
@@ -51,4 +59,27 @@ body{
 .navbar-brand a{
     text-decoration: none;
     color: black;
+}
+.container{
+    display: flex;
+    align-items: center;
+}
+
+.imgProfile{
+    width: 4% !important;
+    cursor: pointer;
+}
+.ViewProfile{
+   cursor: pointer;
+   text-decoration: none;
+   border-radius: 5px 5px 0 0;
+}
+.ViewProfile div:hover{
+    background-color: #2b6efd;
+    color: white;
+}
+.LogoutProfile{
+    background-color: #dc3545;
+    color: aliceblue;
+    cursor: pointer;
 }

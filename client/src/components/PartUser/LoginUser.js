@@ -3,8 +3,10 @@ import { Button, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from "react-redux";
 import { addErrors, delErrors } from "../../Redux/Slice/manipulationSlice";
 import axios from "axios";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { changeEtat } from '../../Redux/Slice/changeStateSlice';
 const LoginUser = () => {
+    const navigate = useNavigate();
     const [newUser, setNewUser] = useState({
         email: "",
         password: "",
@@ -14,6 +16,7 @@ const LoginUser = () => {
       };
     
       const errorsHandler = useSelector((state) => state.manipulation.value);
+      
     
       const dispatch = useDispatch();
     
@@ -26,6 +29,8 @@ const LoginUser = () => {
             localStorage.setItem("auth", result.data.userToken);
             // Clear any previous validation errors
             dispatch(delErrors());
+            dispatch(changeEtat())
+            navigate("/movie")
             setNewUser({
               email: "",
               password: "",

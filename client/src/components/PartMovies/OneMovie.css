@@ -1,0 +1,107 @@
+.divWatchMovie{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+.divWatchMovie img{
+    width: 25%;
+    height: 500px;
+    border-radius:8px;
+    
+}
+
+.contWatch{
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+}
+.contWatch h1{
+    font-size: 1.8rem;
+    color: aliceblue;
+
+}
+
+.contWatch p:first-child{
+    text-align: left;
+}
+
+.genreMov{
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.genreMov span{
+    background-color: red;
+    color: black;
+    padding: 5px;
+    border-radius: 20px;
+    outline: 0;
+    border: 0;
+}
+.genreMov p{
+    margin-top: 13%;
+    background-color: white;
+    padding: 5px;
+    border-radius: 20px;
+    outline: 0;
+    border: 0;
+    color: black;
+}
+
+
+.rateMov{
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.rateMov span{
+    background-color: red;
+    color: black;
+    padding: 5px;
+    border-radius: 20px;
+    outline: 0;
+    border: 0;
+}
+.rateMov p{
+    margin-top: 13%;
+    background-color: white;
+    padding: 5px;
+    border-radius: 20px;
+    outline: 0;
+    border: 0;
+    color: black;
+}
+
+.btnMov{
+    display: flex;
+    flex-direction: column;
+}
+.btnMov button{
+    width: 200px;
+    height: 50px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    outline: 0;
+    border: 0;
+}
+.btnMov button a{
+    text-decoration: none;
+    color: black;
+}
+.btnMov button:first-child{
+    background-color: red;
+    color: white;
+}
+
+
+.videoMov{
+    display: block;
+    width: 70%;
+    margin: 50px auto;
+    height: 700px;
+}
