@@ -88,3 +88,11 @@ body{
     margin: 2% auto;
     background-color: aliceblue;
 }
+.h1Payement{
+    color: aliceblue;
+    text-align: center;
+    margin-top: 2%;
+}
+.contWatch p{
+    color: white;
+}

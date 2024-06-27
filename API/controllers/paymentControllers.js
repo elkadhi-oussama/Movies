@@ -12,7 +12,7 @@ export const addPayment = async (req, res) => {
     app_secret: process.env.app_secret, // Application secret from environment variables
     amount: req.body.amount, // Payment amount from the request body
     accept_card: "true", // Accept card payments
-    session_timeout_secs: 1200, // Session timeout in seconds
+    session_timeout_secs: 1800, // Session timeout in seconds
     success_link: "http://localhost:5000/success", // URL to redirect to on successful payment
     fail_link: "http://localhost:5000/fail", // URL to redirect to on failed payment
     developer_tracking_id: process.env.myIdInAppFlouci, // Developer tracking ID from environment variables
