@@ -6,6 +6,12 @@ import { useSelector } from "react-redux";
 
 const MovieList = () => {
   const movies = useSelector((state) => state.movie.value);
+  const user = useSelector((state) => state.user.value);
+  const payment = useSelector(state=>state.payment.value)
+
+  console.log("user ", user)
+
+  console.log("payment ", payment)
 
   return (
     <div className="wrapperFree">
