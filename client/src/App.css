@@ -6,3 +6,49 @@ body{
     height:100vh;
     font-family: 'Lato';
 }
+.carouselCSS{
+    width: 95%;
+    margin: 5px auto;
+}
+.carousel-caption{
+    background-color: black;
+    width: 40%;
+    
+    margin: 0 auto;
+    border-radius: 20px;
+    border: 2px solid white;
+    padding-bottom: 10px;
+}
+.carousel-caption h1{
+    text-align: center;
+}
+.carouselCSS img{
+    width: 100% !important;
+    height: 700px;
+}
+.RegisterUser{
+    width: 30%;
+    margin: 10px auto;
+}
+.form-label{
+    color: white;
+}
+.text-muted {
+    color: white !important;
+}
+.RegisterUser p{
+    margin-top: 20px;
+    color: white;
+}
+.me-auto a{
+    text-decoration: none;
+    color: black;
+}
+.btn a{
+    text-decoration: none;
+    color: white; 
+}
+.navbar-brand a{
+    text-decoration: none;
+    color: black;
+}
