@@ -10,20 +10,20 @@ const PaymentComponents = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const payment = useSelector(state=>state.payment.value)
+  const payment = useSelector((state) => state.payment.value);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleClose = () => {
     setShow(false);
     setAmount(0);
-    dispatch(delPayment())
+    dispatch(delPayment());
     setError(null);
   };
 
   const handleShow = () => {
     setShow(true);
     setAmount(0);
-    dispatch(delPayment())
+    dispatch(delPayment());
     setError(null);
   };
 
@@ -34,8 +34,8 @@ const PaymentComponents = () => {
         "https://movies-application-api.vercel.app/payment/add",
         { amount } // Send amount in the correct format
       );
-      
-      dispatch(getPaymentDetails(result.data.result))
+
+      dispatch(getPaymentDetails(result.data.result));
       setIsLoading(false);
     } catch (error) {
       console.log("Error occurred during payment:", error);
@@ -53,7 +53,7 @@ const PaymentComponents = () => {
       paymentFunction(amount);
     }
   };
-console.log(payment)
+
   return (
     <div>
       <Button variant="success" onClick={handleShow}>
@@ -65,14 +65,6 @@ console.log(payment)
           <Modal.Title>Payment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Check
-            type={"radio"}
-            id={`default-radio-1`}
-            label={`3 TND just for this movie`}
-            name="group1"
-            value={3000}
-            onChange={handleChange}
-          />
           <Form.Check
             type={"radio"}
             id={`default-radio-2`}
@@ -95,16 +87,30 @@ console.log(payment)
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="success" onClick={handleSubmit} disabled={isLoading || amount === 0}>
+          <Button
+            variant="success"
+            onClick={handleSubmit}
+            disabled={isLoading || amount === 0}
+          >
             {isLoading ? (
-              <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
             ) : (
               "Submit"
             )}
           </Button>
           {payment.link && (
             <Button variant="primary" onClick={handleClose}>
-              <a href={`${payment.link}`} target="_blank" rel="noopener noreferrer">
+              <a
+                href={`${payment.link}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Go to Payment
               </a>
             </Button>
