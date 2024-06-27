@@ -1,7 +1,9 @@
 // Import the User model for database operations
 import User from "../models/User.js";
+
 // Import bcrypt for hashing passwords
 import bcrypt from "bcrypt";
+
 // Import jsonwebtoken for generating JWT tokens
 import jwt from "jsonwebtoken";
 
@@ -86,10 +88,89 @@ export const loginUser = async (req, res) => {
   }
 };
 
-
-// Exporting the currentUser function to be used in other parts of the application
+// Function to check the current authenticated user
 export const currentUser = (req, res) => {
-    // Send a JSON response with a message and the user information from the request object
-    res.send({ msg: "User is authenticated", user: req.user });
-  };
-  
+  // Send a JSON response with a message and the user information from the request object
+  res.send({ msg: "User is authenticated", user: req.user });
+};
+
+// Function to get all users
+export const getAllUser = async (req, res) => {
+  try {
+    // Retrieve all users from the database
+    const allUsers = await User.find();
+    res.status(200).send({ msg: "All users retrieved", allUsers });
+  } catch (error) {
+    // Send an error response if there was a problem retrieving users
+    res
+      .status(500)
+      .send({ msg: "Invalid request when retrieving all users", error });
+  }
+};
+
+// Function to get a single user by ID
+export const getOneUser = async (req, res) => {
+  try {
+    // Extract the user ID from the request parameters
+    const idUser = req.params.id;
+
+    // Find the user in the database by its ID
+    const oneUser = await User.findById({ _id: idUser });
+
+    // Send a success response if the user is found, or an appropriate message if not found
+    oneUser
+      ? res.status(200).send({ msg: "User found", oneUser })
+      : res.status(200).send({ msg: "User not found" });
+  } catch (error) {
+    // Send an error response if there was a problem retrieving the user
+    res
+      .status(500)
+      .send({ msg: "Invalid request when retrieving one user", error });
+  }
+};
+
+// Function to delete a single user by ID
+export const deleteOneUser = async (req, res) => {
+  try {
+    // Extract the user ID from the request parameters
+    const idUser = req.params.id;
+
+    // Delete the user from the database by its ID
+    const userDel = await User.deleteOne({ _id: idUser });
+
+    // Send a success response if the user is deleted, or an appropriate message if it was already deleted
+    userDel.deletedCount
+      ? res.status(200).send({ msg: "User deleted" })
+      : res.status(200).send({ msg: "User already deleted" });
+  } catch (error) {
+    // Send an error response if there was a problem deleting the user
+    res
+      .status(500)
+      .send({ msg: "Invalid request when trying to delete user", error });
+  }
+};
+
+// Function to update a single user by ID
+export const updateOneUser = async (req, res) => {
+  try {
+    let hashedPassword;
+    if (req.body.password) {
+      const saltRounds = 10;
+      const salt = await bcrypt.genSalt(saltRounds);
+      hashedPassword = await bcrypt.hash(req.body.password, salt);
+    }
+    // Update the user in the database with the data from the request body
+    const updateUser = await User.updateOne(
+      { _id: req.params.id },
+      { $set: { ...req.body, password: hashedPassword } }
+    );
+
+    // Send a success response if the user is updated, or an appropriate message if it was already updated
+    updateUser.modifiedCount
+      ? res.status(200).send({ msg: "User updated" })
+      : res.status(200).send({ msg: "User already updated" });
+  } catch (error) {
+    // Send an error response if there was a problem updating the user
+    res.status(500).send({ msg: "Invalid request", error });
+  }
+};
