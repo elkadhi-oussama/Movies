@@ -53,6 +53,7 @@ const PaymentComponents = () => {
       paymentFunction(amount);
     }
   };
+  console.log("amount ", amount)
 
   return (
     <div>
@@ -67,15 +68,15 @@ const PaymentComponents = () => {
         <Modal.Body>
           <Form.Check
             type={"radio"}
-            id={`default-radio-2`}
-            label={`7.99 TND for one month to see all movies`}
+            id={`default-radio-1`}
+            label={`7 TND for one month to see all movies`}
             name="group1"
-            value={7.99}
+            value={7000}
             onChange={handleChange}
           />
           <Form.Check
             type={"radio"}
-            id={`default-radio-3`}
+            id={`default-radio-2`}
             label={`80 TND for one year to see all movies`}
             name="group1"
             value={80000}
