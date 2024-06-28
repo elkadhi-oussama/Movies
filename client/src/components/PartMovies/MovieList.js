@@ -34,7 +34,6 @@ const MovieList = () => {
   useEffect(() => {
     checkPayment(user.paymentId);
   }, []);
-  console.log("in Comp movieList : ", user)
   //end 
 
   return (

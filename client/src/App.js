@@ -14,6 +14,7 @@ import { addUser } from "./Redux/Slice/userSlice";
 import OneMovie from "./components/PartMovies/OneMovie";
 import Profile from "./components/PartUser/Profile";
 import PaymentSuccs from "./components/PartPayment/PaymentSuccs";
+import { changeEtat } from "./Redux/Slice/changeStateSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +57,35 @@ function App() {
   }, [changeState]);
   // end current
 
+  //update user for subscribe
+  const updateUserForCheckPayment = async (condition) => {
+    await axios.put(
+      `https://movies-application-api.vercel.app/user/updateOneUser/${user._id}`,
+      { ...user, subscribe: condition }
+    );
+    dispatch(changeEtat());
+  };
+
+  const checkPayment = async (payment_id) => {
+    await axios
+      .post(
+        `https://movies-application-api.vercel.app/payment/verify/${payment_id}`
+      )
+      .then((result) =>
+        result.data === "SUCCESS"
+          ? updateUserForCheckPayment(true)
+          : updateUserForCheckPayment(false)
+      )
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    checkPayment(user.paymentId);
+  }, []);
+  //end
+  if (user.subscribe) {
+    alert("your payment successfully");
+  }
+
   return (
     <div>
       <NavbarApp />
@@ -72,12 +102,7 @@ function App() {
         ) : (
           <Route path="/login" element={<LoginUser />} />
         )}
-        {user.email &&
-          (user.subscribe ? (
-            <Route path="/success" element={<PaymentSuccs />} />
-          ) : (
-            <Route path="*" element={<Profile />} />
-          ))}
+
         <Route path="*" element={<LoginUser />} />
       </Routes>
     </div>

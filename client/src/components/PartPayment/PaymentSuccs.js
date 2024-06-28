@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const PaymentSuccs = () => {
   return (
     <div className="cardBody">
-        <div class="card">
+        <div className="card">
           <div >
             <i class="checkmark">✓</i>
           </div>

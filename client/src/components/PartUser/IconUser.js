@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, ListGroup, Offcanvas, Row, Spinner, Tab } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { changeEtat } from "../../Redux/Slice/changeStateSlice";
 import { delUser } from "../../Redux/Slice/userSlice";
+import axios from "axios";
 
 const IconUser = () => {
   return (
@@ -29,6 +30,31 @@ function OffCanvasExample({ name, ...props }) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+    //update user for subscribe 
+    const updateUserForCheckPayment = async (condition) => {
+      await axios.put(
+        `https://movies-application-api.vercel.app/user/updateOneUser/${user._id}`,
+        { ...user, subscribe: condition }
+      );
+      dispatch(changeEtat());
+    };
+  
+    const checkPayment = async (payment_id) => {
+      await axios
+        .post(
+          `https://movies-application-api.vercel.app/payment/verify/${payment_id}`
+        )
+        .then((result) =>
+          result.data === "SUCCESS"
+            ? updateUserForCheckPayment(true)
+            : updateUserForCheckPayment(false)
+        )
+        .catch((err) => console.log(err));
+    };
+    useEffect(() => {
+      checkPayment(user.paymentId);
+    }, []);
+    //end 
 
   return (
     <>
