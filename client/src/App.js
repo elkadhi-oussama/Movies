@@ -82,9 +82,7 @@ function App() {
     checkPayment(user.paymentId);
   }, []);
   //end
-  if (user.subscribe) {
-    alert("your payment successfully");
-  }
+ 
 
   return (
     <div>
