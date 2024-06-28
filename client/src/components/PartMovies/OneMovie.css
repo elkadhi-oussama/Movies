@@ -1,4 +1,5 @@
-.divWatchMovie{
+/* Styles for the movie details section */
+.divWatchMovie {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -6,35 +7,36 @@
     margin: 0 auto;
     padding-top: 50px;
 }
-.divWatchMovie img{
+
+.divWatchMovie img {
     width: 25%;
     height: 500px;
-    border-radius:8px;
-    
+    border-radius: 8px;
 }
 
-.contWatch{
+.contWatch {
     display: flex;
     flex-direction: column;
     width: 33%;
 }
-.contWatch h1{
+
+.contWatch h1 {
     font-size: 1.8rem;
     color: aliceblue;
-
 }
 
-.contWatch p:first-child{
+.contWatch p:first-child {
     text-align: left;
 }
 
-.genreMov{
+.genreMov {
     width: 25%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.genreMov span{
+
+.genreMov span {
     background-color: red;
     color: black;
     padding: 5px;
@@ -42,7 +44,8 @@
     outline: 0;
     border: 0;
 }
-.genreMov p{
+
+.genreMov p {
     margin-top: 13%;
     background-color: white;
     padding: 5px;
@@ -52,14 +55,14 @@
     color: black;
 }
 
-
-.rateMov{
+.rateMov {
     width: 20%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.rateMov span{
+
+.rateMov span {
     background-color: red;
     color: black;
     padding: 5px;
@@ -67,7 +70,8 @@
     outline: 0;
     border: 0;
 }
-.rateMov p{
+
+.rateMov p {
     margin-top: 13%;
     background-color: white;
     padding: 5px;
@@ -77,11 +81,12 @@
     color: black;
 }
 
-.btnMov{
+.btnMov {
     display: flex;
     flex-direction: column;
 }
-.btnMov button{
+
+.btnMov button {
     width: 200px;
     height: 50px;
     margin-bottom: 20px;
@@ -89,17 +94,18 @@
     outline: 0;
     border: 0;
 }
-.btnMov button a{
+
+.btnMov button a {
     text-decoration: none;
     color: black;
 }
-.btnMov button:first-child{
+
+.btnMov button:first-child {
     background-color: red;
     color: white;
 }
 
-
-.videoMov{
+.videoMov {
     display: block;
     width: 70%;
     margin: 50px auto;

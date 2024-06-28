@@ -1,98 +1,116 @@
-body{
-    background-color: black;
-    padding: 0px;
-    margin:0px;
-    width:100%;
-    height:100vh;
-    font-family: 'Lato';
-}
-.carouselCSS{
-    width: 95%;
-    margin: 5px auto;
-}
-.carousel-caption{
-    background-color: black;
-    width: 40%;
-    
-    margin: 0 auto;
-    border-radius: 20px;
-    border: 2px solid white;
-    padding-bottom: 10px;
-}
-.carousel-caption h1{
-    text-align: center;
-}
-.carouselCSS img{
-    width: 100% !important;
-    height: 700px;
-}
-.RegisterUser{
-    width: 30%;
-    margin: 10px auto;
-}
-.form-label{
-    color: white;
-}
-.text-muted {
-    color: white !important;
-}
-.RegisterUser p{
-    margin-top: 20px;
-    color: white;
-}
-.me-auto{
-    width: 30%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 5px;
-    font-size: 16px;
-}
-.me-auto a{
-    text-decoration: none;
-    color: black;
-}
-.btn a{
-    text-decoration: none;
-    color: white; 
-}
-.navbar-brand a{
-    text-decoration: none;
-    color: black;
-}
-.container{
-    display: flex;
-    align-items: center;
+body {
+    background-color: black; /* Set the background color to black */
+    padding: 0px; /* Remove padding */
+    margin: 0px; /* Remove margin */
+    width: 100%; /* Full width */
+    height: 100vh; /* Full viewport height */
+    font-family: 'Lato'; /* Set font family to Lato */
 }
 
-.imgProfile{
-    width: 4% !important;
-    cursor: pointer;
+.carouselCSS {
+    width: 95%; /* Set the width to 95% */
+    margin: 5px auto; /* Center the carousel with margin */
 }
-.ViewProfile{
-   cursor: pointer;
-   text-decoration: none;
-   border-radius: 5px 5px 0 0;
+
+.carousel-caption {
+    background-color: black; /* Black background for captions */
+    width: 40%; /* Set the width to 40% */
+    margin: 0 auto; /* Center the caption */
+    border-radius: 20px; /* Rounded corners */
+    border: 2px solid white; /* White border */
+    padding-bottom: 10px; /* Padding at the bottom */
 }
-.ViewProfile div:hover{
-    background-color: #2b6efd;
-    color: white;
+
+.carousel-caption h1 {
+    text-align: center; /* Center-align the heading */
 }
-.LogoutProfile{
-    background-color: #dc3545;
-    color: aliceblue;
-    cursor: pointer;
+
+.carouselCSS img {
+    width: 100% !important; /* Set image width to 100% */
+    height: 700px; /* Fixed height for images */
 }
-.Profile{
-    width: 50%;
-    margin: 2% auto;
-    background-color: aliceblue;
+
+.RegisterUser {
+    width: 30%; /* Set width to 30% */
+    margin: 10px auto; /* Center the register user form */
 }
-.h1Payement{
-    color: aliceblue;
-    text-align: center;
-    margin-top: 2%;
+
+.form-label {
+    color: white; /* White color for form labels */
 }
-.contWatch p{
-    color: white;
+
+.text-muted {
+    color: white !important; /* Ensure text-muted class is white */
+}
+
+.RegisterUser p {
+    margin-top: 20px; /* Margin at the top */
+    color: white; /* White color for text */
+}
+
+.me-auto {
+    width: 30%; /* Set width to 30% */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-evenly; /* Space items evenly */
+    align-items: center; /* Center items vertically */
+    padding: 5px; /* Padding */
+    font-size: 16px; /* Font size */
+}
+
+.me-auto a {
+    text-decoration: none; /* Remove text decoration */
+    color: black; /* Black color for links */
+}
+
+.btn a {
+    text-decoration: none; /* Remove text decoration */
+    color: white; /* White color for links in buttons */
+}
+
+.navbar-brand a {
+    text-decoration: none; /* Remove text decoration */
+    color: black; /* Black color for links in navbar brand */
+}
+
+.container {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+}
+
+.imgProfile {
+    width: 4% !important; /* Set width to 4% */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.ViewProfile {
+    cursor: pointer; /* Pointer cursor */
+    text-decoration: none; /* Remove text decoration */
+    border-radius: 5px 5px 0 0; /* Rounded top corners */
+}
+
+.ViewProfile div:hover {
+    background-color: #2b6efd; /* Background color on hover */
+    color: white; /* White text color on hover */
+}
+
+.LogoutProfile {
+    background-color: #dc3545; /* Red background color */
+    color: aliceblue; /* Alice blue text color */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.Profile {
+    width: 50%; /* Set width to 50% */
+    margin: 2% auto; /* Center the profile section */
+    background-color: aliceblue; /* Alice blue background color */
+}
+
+.h1Payement {
+    color: aliceblue; /* Alice blue text color */
+    text-align: center; /* Center-align the heading */
+    margin-top: 2%; /* Margin at the top */
+}
+
+.contWatch p {
+    color: white; /* White color for text */
 }
