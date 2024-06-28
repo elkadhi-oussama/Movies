@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import MovieList from "./components/PartMovies/MovieList";
 import "./App.css";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import NavbarApp from "./components/NavbarApp";
 import HomePage from "./Pages/HomePage";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,14 +13,14 @@ import LoginUser from "./components/PartUser/LoginUser";
 import { addUser } from "./Redux/Slice/userSlice";
 import OneMovie from "./components/PartMovies/OneMovie";
 import Profile from "./components/PartUser/Profile";
-import PaymentSuccs from "./components/PartPayment/PaymentSuccs";
+
 import { changeEtat } from "./Redux/Slice/changeStateSlice";
 
 function App() {
   const dispatch = useDispatch();
   const changeState = useSelector((state) => state.change.value);
   const user = useSelector((state) => state.user.value);
-  const navigator = useNavigate();
+ 
   useEffect(() => {
     const getAllMovies = async () => {
       try {

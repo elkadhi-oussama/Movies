@@ -2,7 +2,7 @@ import React from "react";
 import { Carousel, Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import PaymentSuccs from "../components/PartPayment/PaymentSuccs";
+
 
 const HomePage = () => {
   const movies = useSelector((state) => state.movie.value);
