@@ -9,6 +9,7 @@ const Profile = () => {
     <div className='Profile'>
     <h1> {user.username} </h1>
     <h2> {user.email} </h2>
+    <h3> {user.subscribe? "GOOD" : "You need to pay"} </h3>
     <Button>Update Profile</Button>
     <PaymentComponents />
     </div>

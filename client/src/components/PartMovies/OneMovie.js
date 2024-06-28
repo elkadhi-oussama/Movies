@@ -3,41 +3,27 @@ import React, { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import "./OneMovie.css";
-import { useDispatch, useSelector } from "react-redux";
-import { updateUser } from "../../Redux/Slice/userSlice";
+import { useSelector } from "react-redux";
 
 const OneMovie = () => {
   const idMovie = useParams().id;
   const [oneMovie, setoneMovie] = useState({});
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.value);
-  const checkPayment = async (payment_id) => {
-    await axios
-      .post(
-        `https://movies-application-api.vercel.app/payment/verify/${payment_id}`
-      )
-      .then(
-        (result) =>
-          result.data === "SUCCESS" &&
-          dispatch(updateUser({ ...user, subscribe: true }))
-      )
-      .catch((err) => console.log(err));
-  };
 
-  console.log(user);
-  const getOneMovie = async () => {
-    await axios
-      .get(
-        "https://movies-application-api.vercel.app/movie/getOneMovie/" + idMovie
-      )
-      .then((result) => setoneMovie(result.data.oneMovie))
-      .catch((err) =>
-        console.log("this error coming when i try to get one movie : ", err)
-      );
-  };
+  const user = useSelector((state) => state.user.value);
+
   useEffect(() => {
+    const getOneMovie = async () => {
+      await axios
+        .get(
+          "https://movies-application-api.vercel.app/movie/getOneMovie/" +
+            idMovie
+        )
+        .then((result) => setoneMovie(result.data.oneMovie))
+        .catch((err) =>
+          console.log("this error coming when i try to get one movie : ", err)
+        );
+    };
     getOneMovie();
-    checkPayment(user.paymentId);
   }, []);
 
   return (

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Button, Form, Modal, Spinner, Alert } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
+
 const PaymentComponents = () => {
   const [show, setShow] = useState(false);
   const [amount, setAmount] = useState(0);
@@ -10,7 +11,7 @@ const PaymentComponents = () => {
   const [error, setError] = useState(null);
   const [payment, setpayment] = useState(null);
   const user = useSelector((state) => state.user.value);
-
+  
   const handleClose = () => {
     setShow(false);
     setAmount(0);
@@ -50,6 +51,7 @@ const PaymentComponents = () => {
       .then((result) => {
         return result.data;
       });
+      
   };
 
   const handleChange = (e) => {
@@ -64,7 +66,9 @@ const PaymentComponents = () => {
 
   if (payment?.payment_id) {
     updateUserForCheckPayment(payment.payment_id);
+   
   }
+  
   return (
     <div>
       <Button variant="success" onClick={handleShow}>

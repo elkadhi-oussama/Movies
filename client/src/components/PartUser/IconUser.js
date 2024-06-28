@@ -53,7 +53,7 @@ function OffCanvasExample({ name, ...props }) {
                 <Row>
                   <Col sm={8}>
                     <ListGroup>
-                      <Link className="ViewProfile"  to={"/profile"} onClick={()=>handleClose()} ><ListGroup.Item >View Profile</ListGroup.Item></Link>
+                      <Link className="ViewProfile"  to={"/profile"} onClick={()=>(handleClose(), dispatch(changeEtat()))} ><ListGroup.Item >View Profile</ListGroup.Item></Link>
                       <ListGroup.Item className="LogoutProfile" onClick={() => logout()}>
                         Logout
                       </ListGroup.Item>

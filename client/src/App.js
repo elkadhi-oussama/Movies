@@ -13,6 +13,7 @@ import LoginUser from "./components/PartUser/LoginUser";
 import { addUser } from "./Redux/Slice/userSlice";
 import OneMovie from "./components/PartMovies/OneMovie";
 import Profile from "./components/PartUser/Profile";
+
 function App() {
   const dispatch = useDispatch();
   const changeState = useSelector((state) => state.change.value);
@@ -52,6 +53,8 @@ function App() {
     auth && getCurrentUser();
   }, [changeState]);
   // end current
+
+ 
   return (
     <div>
       <NavbarApp />
