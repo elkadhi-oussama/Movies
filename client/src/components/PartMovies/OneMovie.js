@@ -3,20 +3,26 @@ import React, { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import "./OneMovie.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../../Redux/Slice/userSlice";
 
 const OneMovie = () => {
   const idMovie = useParams().id;
   const [oneMovie, setoneMovie] = useState({});
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
   const checkPayment = async (payment_id) => {
     await axios
       .post(
         `https://movies-application-api.vercel.app/payment/verify/${payment_id}`
       )
-      .then((result) => console.log("checkPayment : ",  result.data)).catch(err=>console.log(err));
+      .then(
+        (result) =>
+          result.data === "SUCCESS" &&
+          dispatch(updateUser({ ...user, subscribe: true }))
+      )
+      .catch((err) => console.log(err));
   };
-
 
   console.log(user);
   const getOneMovie = async () => {
@@ -31,7 +37,7 @@ const OneMovie = () => {
   };
   useEffect(() => {
     getOneMovie();
-    checkPayment(user.payment_id);
+    checkPayment(user.paymentId);
   }, []);
 
   return (
