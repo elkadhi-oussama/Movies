@@ -9,8 +9,16 @@ const OneMovie = () => {
   const idMovie = useParams().id;
   const [oneMovie, setoneMovie] = useState({});
   const user = useSelector((state) => state.user.value);
+  const checkPayment = async (payment_id) => {
+    await axios
+      .post(
+        `https://movies-application-api.vercel.app/payment/verify/${payment_id}`
+      )
+      .then((result) => console.log("checkPayment : ",  result.data)).catch(err=>console.log(err));
+  };
 
 
+  console.log(user);
   const getOneMovie = async () => {
     await axios
       .get(
@@ -23,6 +31,7 @@ const OneMovie = () => {
   };
   useEffect(() => {
     getOneMovie();
+    checkPayment(user.payment_id);
   }, []);
 
   return (

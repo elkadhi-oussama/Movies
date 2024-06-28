@@ -1,29 +1,27 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Button, Form, Modal, Spinner, Alert } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { delPayment, getPaymentDetails } from "../../Redux/Slice/paymentSlice";
+import { useSelector } from "react-redux";
 
 const PaymentComponents = () => {
   const [show, setShow] = useState(false);
   const [amount, setAmount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [payment, setpayment] = useState(null);
+  const user = useSelector((state) => state.user.value);
 
-  const payment = useSelector((state) => state.payment.value);
-
-  const dispatch = useDispatch();
   const handleClose = () => {
     setShow(false);
     setAmount(0);
-    dispatch(delPayment());
+    setpayment(null);
     setError(null);
   };
 
   const handleShow = () => {
     setShow(true);
     setAmount(0);
-    dispatch(delPayment());
+    setpayment(null);
     setError(null);
   };
 
@@ -35,13 +33,23 @@ const PaymentComponents = () => {
         { amount } // Send amount in the correct format
       );
 
-      dispatch(getPaymentDetails(result.data.result));
+      setpayment(result.data.result);
       setIsLoading(false);
     } catch (error) {
       console.log("Error occurred during payment:", error);
       setError("Failed to initiate payment. Please try again.");
       setIsLoading(false);
     }
+  };
+  const updateUserForCheckPayment = async (payment_id) => {
+    await axios
+      .put(
+        `https://movies-application-api.vercel.app/user/updateOneUser/${user._id}`,
+        { ...user, paymentId: payment_id }
+      )
+      .then((result) => {
+        return result.data;
+      });
   };
 
   const handleChange = (e) => {
@@ -53,8 +61,10 @@ const PaymentComponents = () => {
       paymentFunction(amount);
     }
   };
-  console.log("amount ", amount)
 
+  if (payment?.payment_id) {
+    updateUserForCheckPayment(payment.payment_id);
+  }
   return (
     <div>
       <Button variant="success" onClick={handleShow}>
@@ -105,7 +115,7 @@ const PaymentComponents = () => {
               "Submit"
             )}
           </Button>
-          {payment.link && (
+          {payment && (
             <Button variant="primary" onClick={handleClose}>
               <a
                 href={`${payment.link}`}

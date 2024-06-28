@@ -3,7 +3,6 @@ import changeStateSlice from "./Slice/changeStateSlice";
 import movieSlice from "./Slice/movieSlice";
 import userSlice from "./Slice/userSlice";
 import manipulationSlice from "./Slice/manipulationSlice";
-import paymentSlice from "./Slice/paymentSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +10,5 @@ export const store = configureStore({
     movie: movieSlice,
     user: userSlice,
     manipulation: manipulationSlice,
-    payment : paymentSlice
   },
 });
