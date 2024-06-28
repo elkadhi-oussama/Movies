@@ -3,13 +3,15 @@ import React, { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import "./OneMovie.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { changeEtat } from "../../Redux/Slice/changeStateSlice";
 
 const OneMovie = () => {
   const idMovie = useParams().id;
   const [oneMovie, setoneMovie] = useState({});
 
   const user = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getOneMovie = async () => {
@@ -25,6 +27,31 @@ const OneMovie = () => {
     };
     getOneMovie();
   }, []);
+  //update user for subscribe
+  const updateUserForCheckPayment = async (condition) => {
+    await axios.put(
+      `https://movies-application-api.vercel.app/user/updateOneUser/${user._id}`,
+      { ...user, subscribe: condition }
+    );
+    dispatch(changeEtat());
+  };
+
+  const checkPayment = async (payment_id) => {
+    await axios
+      .post(
+        `https://movies-application-api.vercel.app/payment/verify/${payment_id}`
+      )
+      .then((result) =>
+        result.data === "SUCCESS"
+          ? updateUserForCheckPayment(true)
+          : updateUserForCheckPayment(false)
+      )
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    checkPayment(user.paymentId);
+  }, []);
+  //end
 
   return (
     <div>
