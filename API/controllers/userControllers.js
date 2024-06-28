@@ -11,7 +11,7 @@ import jwt from "jsonwebtoken";
 export const registerUser = async (req, res) => {
   try {
     // Destructure user details from the request body
-    const { username, email, password, isAdmin, subscribe } = req.body;
+    const { username, email, password, isAdmin, subscribe,paymentId } = req.body;
 
     // Check if the email or username already exists in the database
     const emailUserFind = await User.findOne({ email });
@@ -29,6 +29,7 @@ export const registerUser = async (req, res) => {
       password,
       isAdmin,
       subscribe,
+      paymentId
     });
 
     // Hash the password before saving
