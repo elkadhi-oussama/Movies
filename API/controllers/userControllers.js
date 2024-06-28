@@ -11,7 +11,8 @@ import jwt from "jsonwebtoken";
 export const registerUser = async (req, res) => {
   try {
     // Destructure user details from the request body
-    const { username, email, password, isAdmin, subscribe,paymentId } = req.body;
+    const { username, email, password, isAdmin, subscribe, paymentId } =
+      req.body;
 
     // Check if the email or username already exists in the database
     const emailUserFind = await User.findOne({ email });
@@ -29,7 +30,7 @@ export const registerUser = async (req, res) => {
       password,
       isAdmin,
       subscribe,
-      paymentId
+      paymentId,
     });
 
     // Hash the password before saving
@@ -154,17 +155,28 @@ export const deleteOneUser = async (req, res) => {
 // Function to update a single user by ID
 export const updateOneUser = async (req, res) => {
   try {
-    let hashedPassword;
-    if (req.body.password) {
-      const saltRounds = 10;
-      const salt = await bcrypt.genSalt(saltRounds);
-      hashedPassword = await bcrypt.hash(req.body.password, salt);
+    let updateUser;
+    const oneUser = await User.findById({ _id: req.body._id });
+
+    if (oneUser.password === req.body.password) {
+      // If the password in the request body matches the user's current password
+      updateUser = await User.updateOne(
+        { _id: req.params.id }, // Filter to find the user by ID
+        { $set: req.body } // Update the user with the new data from the request body
+      );
+    } else {
+      let hashedPassword; // Variable to store the hashed password
+      if (req.body.password) {
+        const saltRounds = 10; // Number of rounds for salting the password
+        const salt = await bcrypt.genSalt(saltRounds); // Generate a salt
+        hashedPassword = await bcrypt.hash(req.body.password, salt); // Hash the new password with the generated salt
+      }
+      // Update the user in the database with the new data, including the hashed password if provided
+      updateUser = await User.updateOne(
+        { _id: req.params.id }, // Filter to find the user by ID
+        { $set: { ...req.body, password: hashedPassword } } // Update the user data, including the new hashed password
+      );
     }
-    // Update the user in the database with the data from the request body
-    const updateUser = await User.updateOne(
-      { _id: req.params.id },
-      { $set: { ...req.body, password: hashedPassword } }
-    );
 
     // Send a success response if the user is updated, or an appropriate message if it was already updated
     updateUser.modifiedCount
