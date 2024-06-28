@@ -62,23 +62,13 @@ function App() {
         <Route path="/login" element={<LoginUser />} />
         {user.email ? (
           <>
-          <Route path="/movie/:id" element={<OneMovie />} />
-          <Route path="/profile" element={<Profile />} />
+            <Route path="/movie/:id" element={<OneMovie />} />
+            <Route path="/profile" element={<Profile />} />
           </>
         ) : (
           <Route path="/login" element={<LoginUser />} />
         )}
-        <Route
-          path="*"
-          element={
-            <h1
-              style={{ marginTop: "50px", color: "white", textAlign: "center" }}
-            >
-              {" "}
-              not founded{" "}
-            </h1>
-          }
-        />
+        <Route path="*" element={<LoginUser />} />
       </Routes>
     </div>
   );
