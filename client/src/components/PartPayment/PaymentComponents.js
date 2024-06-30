@@ -35,6 +35,7 @@ const PaymentComponents = () => {
       );
 
       setpayment(result.data.result);
+      console.log("test :", result.data.result)
       setIsLoading(false);
     } catch (error) {
       console.log("Error occurred during payment:", error);

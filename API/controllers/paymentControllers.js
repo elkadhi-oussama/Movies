@@ -14,7 +14,7 @@ export const addPayment = async (req, res) => {
     accept_card: "true", // Accept card payments
     session_timeout_secs: 1800, // Session timeout in seconds
     success_link: "https://movies-application-front.vercel.app/", // URL to redirect to on successful payment
-    // fail_link: "https://movies-application-front.vercel.app/profile", // URL to redirect to on failed payment
+    fail_link: "https://movies-application-front.vercel.app/profile", // URL to redirect to on failed payment
     developer_tracking_id: process.env.myIdInAppFlouci, // Developer tracking ID from environment variables
   };
 
@@ -36,8 +36,8 @@ export const verifyPayment = async (req, res) => {
   // Headers to be sent with the API request
   const headers = {
     "Content-Type": "application/json", // Content type of the request
-    "apppublic": process.env.app_token, // Application token from environment variables
-    "appsecret": process.env.app_secret, // Application secret from environment variables
+    apppublic: process.env.app_token, // Application token from environment variables
+    appsecret: process.env.app_secret, // Application secret from environment variables
   };
 
   // Make a GET request to the payment verification API
