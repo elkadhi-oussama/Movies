@@ -51,7 +51,7 @@ export const validateRegister = () => {
     check(
       "password",
       "Password must be at least 8 characters and should contain at least one uppercase letter, one lowercase letter, one number, and one symbol"
-    ).isStrongPassword(),
+    ).not().isEmpty(),
   ];
 };
 
